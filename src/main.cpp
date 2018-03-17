@@ -1,5 +1,8 @@
 #include <iostream>
+//#include <boost/array.hpp>
+//#include <boost/asio.hpp>
 #include "rsa.cpp"
+#include "sha.cpp"
 
 
 int main(){
@@ -13,6 +16,8 @@ int main(){
     std::cout<<(unsigned long long)y<<std::endl;
     y = x.dec(y, keychain.second.first, keychain.first);
     std::cout<<(char)y<<std::endl;
+    string sha = SHA256("Hello World!");
+    std::cout<<sha<<std::endl;
     return 0;
 
 }

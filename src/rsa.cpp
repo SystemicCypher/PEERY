@@ -1,4 +1,6 @@
-//Code and stuff.....
+//TODO:
+//Fix random prime breakage
+//THAT'S ALL FOLKS!
 #include <iostream>
 #include <math.h>
 #include <string.h>
@@ -7,6 +9,7 @@
 #include <fstream>
 #include <utility>
 #include <map>
+#include <vector>
 
 
 class RSA{
@@ -116,8 +119,6 @@ public:
         unsigned long long c = powerMod(decryptChar, d, n);
         return c;
     }
-
-
 
 };
 
