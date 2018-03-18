@@ -44,9 +44,12 @@ public:
     
     std::vector<Block> chain;
 
+    std::vector<std::string> filesSharing;
+
     System(){
         starter_coins = 10;
         total_coins = present.size() *10;
+
     }
 
     static void duplication(System source, System& clone){
@@ -56,8 +59,17 @@ public:
         clone.total_coins = source.total_coins;
     }
 
+
 //User-facing functions
     void join(std::string addr){
+        //std::fstream check;
+        //check.open("peercoin.config", std::fstream::in);
+        //if(check.is_open){
+        //    check.close();
+        //    loadConfig();
+        //    loadChain();
+        //    return;
+        //}
         State newUser;
         newUser.user = addr;
         personalAddress = addr;
@@ -81,6 +93,7 @@ public:
     }
 
     void share(std::string filepath){
+        filesSharing.push_back(filepath);
         total_coins += 5;
         history.push_back(present);
         for(unsigned i = 0; i < present.size(); i++){
@@ -147,11 +160,11 @@ public:
         return output;
     }
 
-    Transaction state2tran(std::vector<State> states){
+    //Transaction state2tran(std::vector<State> states){
 
-    }
+    //}
 
-
+//checks if a transaction is valid
     bool validTransaction(Transaction tra, std::vector<State> state){
         State current_person;
         for(auto person : state){
@@ -171,6 +184,7 @@ public:
         }
     }
 
+//makes blocks for the chain
     Block makeBlock(std::vector<std::vector<State>> codex, std::vector<Block> chain){
         Block parent = chain.back();
         std::string pHash = parent.blockHash;
@@ -187,16 +201,27 @@ public:
         return output;
     }
 
+//Changes total coin count - used when block received
+    void totalCoin(std::vector<State> current){
+        unsigned newTotal = 0;
+        for (auto x : current){
+            newTotal += x.coins;
+        }
+        total_coins = newTotal;
+    }
+
+//Adds the received block to chain and updates state
     void addToChain(Block newBlock){
         history.erase(history.begin(), history.end());
         for(auto x : newBlock.data.codex){
             history.push_back(x);
         }
         present = history.back();
+        totalCoin(present);
         chain.push_back(newBlock);
     }
 
-
+//Hasher using SHA
     std::string hash(BlockData d){
         std::string toHash = "";
         toHash += std::to_string(d.blocknum);
@@ -216,6 +241,7 @@ public:
         return out;
     }
 
+//validity checks
     bool goodHash(Block b){
         std::string expected = hash(b.data);
         if(b.blockHash != expected){
@@ -255,6 +281,67 @@ public:
         }
     }
 
+
+
+//File operations
+    void saveConfig(){
+        std::fstream config;
+        config.open("peercoin.config", std::fstream::out);
+        config<<"personaladdress: "<<personalAddress<<"\n";
+        config<<"filesharelist: {"<<"\n";
+        for(auto file : filesSharing){
+            config<<file<<"\n";
+        }
+        config<<"}\n";
+        config<<"END";
+        config.close();
+    }
+    void loadConfig(){
+        std::fstream config;
+        config.open("peercoin.config", std::fstream::in);
+        std::string x;
+        config>>x;
+        config>>x;
+        personalAddress = x;
+        config>>x;
+        config>>x;
+        while(x != "}"){
+            filesSharing.push_back(x);
+            config>>x;
+        }
+        config.close();
+    }
+
+    void saveChain(){
+        std::fstream chains;
+        chains.open("blocks.chain", std::fstream::out);
+        chain.push_back(makeBlock(history, chain));
+        for(auto block : chain){
+            chains<<"Block: "<<block.data.blocknum<<"\n";
+            chains<<"Hash: "<<block.blockHash<<"\n";
+            chains<<"parentHash: "<<block.data.parentHash<<"\n";
+            chains<<"TransactionCnt: "<<block.data.transactionCount<<"\n";
+            chains<<"{\n";
+            int counter = 0;
+            for(auto datas : block.data.codex){
+                chains<<"\t"<<counter<<"State: {\n";
+                for(auto person : datas){
+                    chains<<"\t\t"<<person.user<<" "<<person.coins<<"\n";
+                }
+                chains<<"\t}\n";
+                counter++;
+            }
+            chains<<"}\n";
+        }
+        chains.close();
+    }
+
+    void loadChain(){
+        std::fstream chains;
+        chains.open("blocks.chain", std::fstream::in);
+
+        chains.close();
+    }
 
 
 

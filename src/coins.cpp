@@ -34,7 +34,7 @@ int main(){
     a.addNewUser("Chuck");
 
     a.request("Deus", "nothing");
-
+    a.share("home");
 
 
     for( auto x : a.present){
@@ -53,16 +53,14 @@ int main(){
     for( auto x : a.present){
         std::cout<<x.user<<" "<<x.coins<<"\n";
     }
-    std::cout<<"a chain size"<<a.chain.size()<<"\n";
-    for( auto x : b.present){
-        std::cout<<x.user<<" "<<x.coins<<"\n";
-    }
 
     a.addToChain(newBlock);
 
-    std::cout<<"a chain size"<<a.chain.size()<<"\n";
+    std::cout<<"\n";
 
     for( auto x : a.chain.back().data.codex.back()){
         std::cout<<x.user<<" "<<x.coins<<"\n";
     }
+    a.saveConfig();
+    a.saveChain();
 }
