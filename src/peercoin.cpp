@@ -316,12 +316,13 @@ public:
         std::fstream chains;
         chains.open("blocks.chain", std::fstream::out);
         chain.push_back(makeBlock(history, chain));
+        chains<<chain.size()<<"\n";
         for(auto block : chain){
             chains<<"Block: "<<block.data.blocknum<<"\n";
             chains<<"Hash: "<<block.blockHash<<"\n";
             chains<<"parentHash: "<<block.data.parentHash<<"\n";
             chains<<"TransactionCnt: "<<block.data.transactionCount<<"\n";
-            chains<<"{\n";
+            chains<<"(\n";
             int counter = 0;
             for(auto datas : block.data.codex){
                 chains<<"\t"<<counter<<"State: {\n";
@@ -331,8 +332,9 @@ public:
                 chains<<"\t}\n";
                 counter++;
             }
-            chains<<"}\n";
+            chains<<")\n";
         }
+
         chains.close();
     }
 
@@ -340,7 +342,86 @@ public:
         std::fstream chains;
         chains.open("blocks.chain", std::fstream::in);
 
+        std::string values;
+        unsigned nums;
+
+        Block l;
+        BlockData d;
+        std::vector<std::vector<State>> past;
+        std::vector<Block> loadedChain;
+        State s;
+        std::vector<State> txns;
+        unsigned limit;
+        chains>>limit;
+        unsigned counter = 0;
+        bool first = true;
+
+        while(counter < limit){
+            past.clear();
+            chains>>values;     //block
+            
+            chains>>nums;       //blocknum
+            
+            d.blocknum = nums;  //stores into data
+            chains>>values;     //Hash:
+            
+            chains>>values;     // ~~~~~~
+            
+            l.blockHash = values; //stores the blockhash
+            chains>>values;       //Parenthash
+            
+            if(first) {
+                d.parentHash = "";
+                first = false;
+            }
+            else{
+                chains>>values;       //~~~~
+                
+                d.parentHash = values;// stores
+            }
+            chains>>values;       //txn# 
+                 
+            chains>>nums;        // #
+            
+            d.transactionCount = nums; //stores #
+            chains>>values;      //  (
+            
+            while(values != ")"){
+                txns.clear();
+                chains>>values; //states
+                
+                if(values == ")") break;
+                chains>>values; //{}
+                
+                    while(values != "}"){
+                        chains>>values; //user
+                        
+                        if(values == "}") break;
+                        s.user = values;
+                        chains>>nums;   // coins
+                        
+                        s.coins = nums;
+                        txns.push_back(s);
+                    }
+                //chains>>values;
+                if(txns.size() > d.transactionCount){
+                    int reduce = txns.size() - d.transactionCount;
+                    txns.erase(txns.begin(), txns.begin()+reduce);
+                }
+                past.push_back(txns);
+            }
+            d.codex = past;
+            l.data = d;
+
+            loadedChain.push_back(l);
+            counter++;
+        }
+
         chains.close();
+        chain = loadedChain;
+        history = loadedChain.back().data.codex;
+        present = history.back();
+
     }
 
 

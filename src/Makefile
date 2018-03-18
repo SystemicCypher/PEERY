@@ -1,11 +1,16 @@
 make:
-	g++ -std=c++11  client.cpp -o peerclient
+	g++ -std=c++11  client.cpp -o peerclient -l boost_system
 
 gen:
-	g++ -std=c++11  coins.cpp -o gen	
+	g++ -std=c++11  coins.cpp -o gen -l boost_system
 
 test:
-	g++ -std=c++11  main.cpp -o coin
+	g++ -std=c++11  main.cpp -o coin -l boost_system
 
-clean:
-	rm gen coin peerclient
+
+cleangen:
+	rm gen
+cleancoin:
+	rm coin
+cleanmain:
+	rm peerclient

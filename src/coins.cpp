@@ -3,6 +3,8 @@
 #include <fstream>
 #include <time.h>
 #include <vector>
+#include <boost/asio.hpp>
+#include <boost/array.hpp>
 #include "peercoin.cpp"
 
 void genesis(System& x){
@@ -26,6 +28,8 @@ void genesis(System& x){
 
 
 
+
+
 int main(){
     System a;
     genesis(a);
@@ -37,10 +41,6 @@ int main(){
     a.share("home");
 
 
-    for( auto x : a.present){
-        std::cout<<x.user<<" "<<x.coins<<"\n";
-    }
-    std::cout<<"\n";
     System b;
     System::duplication(a,b);
     Block newBlock;
@@ -50,17 +50,16 @@ int main(){
     b.request("Deus", "o");
     newBlock = b.makeBlock(b.history, b.chain);
 
-    for( auto x : a.present){
-        std::cout<<x.user<<" "<<x.coins<<"\n";
-    }
-
     a.addToChain(newBlock);
 
-    std::cout<<"\n";
-
-    for( auto x : a.chain.back().data.codex.back()){
-        std::cout<<x.user<<" "<<x.coins<<"\n";
-    }
     a.saveConfig();
     a.saveChain();
+    System c;
+    c.loadChain();
+    c.join("DankMeme");
+    c.request("Ryuko", "o");
+    c.saveChain();
+    
+
+    return 0;
 }
