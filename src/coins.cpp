@@ -3,8 +3,6 @@
 #include <fstream>
 #include <time.h>
 #include <vector>
-#include <boost/asio.hpp>
-#include <boost/array.hpp>
 #include "peercoin.cpp"
 
 void genesis(System& x){
@@ -59,6 +57,10 @@ int main(){
     c.join("DankMeme");
     c.request("Ryuko", "o");
     c.saveChain();
+
+    a.loadChain();
+    a.share("files/dank.txt");
+    a.unshare("home");
     
 
     return 0;

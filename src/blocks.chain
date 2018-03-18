@@ -1,4 +1,4 @@
-5
+7
 Block: 0
 Hash: 02063ccd1ac42411599279c93be66f90afcc92d809b2f60db8c042418fdf9a9c
 parentHash: 
@@ -233,5 +233,164 @@ TransactionCnt: 11
 		Ryuko 10
 		Chuck 10
 		DankMeme 10
+	}
+)
+Block: 5
+Hash: 23cbaf0681e7e775516fa87f38a188db72111e2868b084aa2bc10586f3fc6e4d
+parentHash: 9176550ec7b9685493de2a86d952a1d30ee532dcd3af372ea8b3e97e3b461db1
+TransactionCnt: 12
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+	8State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+		DankMeme 10
+	}
+	9State: {
+		Deus 20
+		Austin 10
+		Ryuko 10
+		Chuck 10
+		DankMeme 5
+	}
+	10State: {
+		Deus 20
+		Austin 5
+		Ryuko 10
+		Chuck 10
+		DankMeme 10
+	}
+	11State: {
+		Deus 20
+		Austin 0
+		Ryuko 10
+		Chuck 10
+		DankMeme 15
+	}
+)
+Block: 6
+Hash: 0bb1f6720b552167fd309e21f60095c62f300ce1586fe5f9241de69614353311
+parentHash: 23cbaf0681e7e775516fa87f38a188db72111e2868b084aa2bc10586f3fc6e4d
+TransactionCnt: 13
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+	8State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+		DankMeme 10
+	}
+	9State: {
+		Deus 20
+		Austin 10
+		Ryuko 10
+		Chuck 10
+		DankMeme 5
+	}
+	10State: {
+		Deus 20
+		Austin 5
+		Ryuko 10
+		Chuck 10
+		DankMeme 10
+	}
+	11State: {
+		Deus 20
+		Austin 0
+		Ryuko 10
+		Chuck 10
+		DankMeme 15
+	}
+	12State: {
+		Deus 20
+		Austin 0
+		Ryuko 10
+		Chuck 10
+		DankMeme 15
 	}
 )

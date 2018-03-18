@@ -1,11 +1,6 @@
 #include <iostream>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <python2.7/python.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include "peercoin.cpp"
 
 void begin(){
@@ -15,10 +10,12 @@ void begin(){
     std::cout<<input<<"\n"; 
 }
 
+
 int main(){
     System me;
     me.loadConfig();
     me.loadChain();
-    me.request("DankMeme", "Dankenade");
+    me.request("DankMeme", "file");
     me.saveChain();
+    return 0;
 }

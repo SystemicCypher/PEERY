@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <time.h>
 #include <string>
 #include <vector>
+#include <python2.7/python.h>
+#include <stdio.h>
 #include "rsa.cpp"
 #include "sha.cpp"
 
@@ -62,14 +63,9 @@ public:
 
 //User-facing functions
     void join(std::string addr){
-        //std::fstream check;
-        //check.open("peercoin.config", std::fstream::in);
-        //if(check.is_open){
-        //    check.close();
-        //    loadConfig();
-        //    loadChain();
-        //    return;
-        //}
+        if(personalAddress != ""){
+            return;
+        }
         State newUser;
         newUser.user = addr;
         personalAddress = addr;
@@ -90,10 +86,20 @@ public:
         b.coins = 5;
         b.data = "";
         history.push_back(updateState(b, present));
+        if(validTransaction(b, present)){
+            if (chosenData == "file"){
+                FILE* fp;
+                fp = fopen("client.py","r");
+                Py_Initialize();
+                PyRun_AnyFile(fp, "client.py");
+                Py_Finalize();
+            }
+        }
     }
 
     void share(std::string filepath){
         filesSharing.push_back(filepath);
+        saveConfig();
         total_coins += 5;
         history.push_back(present);
         for(unsigned i = 0; i < present.size(); i++){
@@ -103,6 +109,16 @@ public:
         }
         
 
+    }
+
+    void unshare(std::string filepath){
+        for(auto it = filesSharing.begin(); it != filesSharing.end(); ++it){
+            if(*it == filepath){
+                filesSharing.erase(it);
+                break;
+            }
+        }
+        saveConfig();
     }
 
 //Internal functions, users don't touch these

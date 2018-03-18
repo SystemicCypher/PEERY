@@ -1,16 +1,10 @@
 make:
-	g++ -std=c++11  client.cpp -o peerclient -l boost_system
+	g++ -std=c++11  client.cpp -o peerclient -I/usr/include/python2.7 -lpython2.7
 
 gen:
-	g++ -std=c++11  coins.cpp -o gen -l boost_system
-
-test:
-	g++ -std=c++11  main.cpp -o coin -l boost_system
+	g++ -std=c++11  coins.cpp -o gen -I/usr/include/python2.7 -lpython2.7
 
 
-cleangen:
-	rm gen
-cleancoin:
-	rm coin
-cleanmain:
-	rm peerclient
+
+clean:
+	rm gen peerclient blocks.chain peercoin.config
