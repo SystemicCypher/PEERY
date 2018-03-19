@@ -30,4 +30,4 @@ def client(filename):
 
 
     # close the connection
-    s.close()  
+    s.close() 
