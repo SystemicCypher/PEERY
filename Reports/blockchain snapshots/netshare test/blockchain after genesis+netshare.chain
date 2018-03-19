@@ -1,0 +1,237 @@
+5
+Block: 0
+Hash: 02063ccd1ac42411599279c93be66f90afcc92d809b2f60db8c042418fdf9a9c
+parentHash: 
+TransactionCnt: 1
+(
+	0State: {
+		Deus 10
+	}
+)
+Block: 1
+Hash: 44db6e66bf5a6a4e26b929169f880aa3f7fe2d308d0d6a8cb16b90c10c11eda5
+parentHash: 02063ccd1ac42411599279c93be66f90afcc92d809b2f60db8c042418fdf9a9c
+TransactionCnt: 8
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+)
+Block: 2
+Hash: 872f6aaab9d2f887efe69d8f6271ab19f1f5cb1e538b6105464b5b6b6e8a331c
+parentHash: 44db6e66bf5a6a4e26b929169f880aa3f7fe2d308d0d6a8cb16b90c10c11eda5
+TransactionCnt: 8
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+)
+Block: 3
+Hash: 1c774b564222c520527157b5413714df98c3ae36b1d59c8147e9b918e0807589
+parentHash: 872f6aaab9d2f887efe69d8f6271ab19f1f5cb1e538b6105464b5b6b6e8a331c
+TransactionCnt: 10
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+	8State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+		DankMeme 10
+	}
+	9State: {
+		Deus 20
+		Austin 10
+		Ryuko 10
+		Chuck 10
+		DankMeme 5
+	}
+)
+Block: 4
+Hash: 5435e2c8d64b1550594d62a48dd8855299865f4616e20aeb7312831c5f14e5b4
+parentHash: 1c774b564222c520527157b5413714df98c3ae36b1d59c8147e9b918e0807589
+TransactionCnt: 11
+(
+	0State: {
+		Deus 10
+	}
+	1State: {
+		Deus 10
+		Austin 10
+	}
+	2State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+	}
+	3State: {
+		Deus 10
+		Austin 10
+		Ryuko 10
+		Chuck 10
+	}
+	4State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	5State: {
+		Deus 15
+		Austin 5
+		Ryuko 10
+		Chuck 10
+	}
+	6State: {
+		Deus 15
+		Austin 10
+		Ryuko 5
+		Chuck 15
+	}
+	7State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+	}
+	8State: {
+		Deus 20
+		Austin 10
+		Ryuko 5
+		Chuck 10
+		DankMeme 10
+	}
+	9State: {
+		Deus 20
+		Austin 10
+		Ryuko 10
+		Chuck 10
+		DankMeme 5
+	}
+	10State: {
+		Deus 20
+		Austin 5
+		Ryuko 10
+		Chuck 15
+		DankMeme 5
+	}
+)
