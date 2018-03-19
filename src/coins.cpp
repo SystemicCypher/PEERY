@@ -59,7 +59,7 @@ int main(){
     c.saveChain();
 
     a.loadChain();
-    a.share("files/dank.txt");
+    a.share("test.mp4");
     a.unshare("home");
     
 

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <python2.7/python.h>
+//#include <bits/stdc++.h>
 #include <stdio.h>
 #include "rsa.cpp"
 #include "sha.cpp"
@@ -64,6 +65,7 @@ public:
 //User-facing functions
     void join(std::string addr){
         if(personalAddress != ""){
+            std::cout<<"You already have an account!\n";
             return;
         }
         State newUser;
@@ -73,10 +75,19 @@ public:
         total_coins += 10;
         present.push_back(newUser);
         history.push_back(present);
+        saveConfig();
     }
 
-    void getPersonalAddr(){
-        std::cout<<personalAddress;
+    void getInfo(){
+        std::cout<<"User: "<<personalAddress<<"\n";
+        for(auto stat : present){
+            if(stat.user == personalAddress){
+                std::cout<<"Coins: "<<stat.coins<<"\n";
+            }
+        }
+        // for(auto it = filesSharing.begin(); it != filesSharing.end(); ++it){
+        //     std::cin<<*it<<"\n";
+        // }
     }
 
     void request(std::string receiveAddr, std::string chosenData){
@@ -86,18 +97,54 @@ public:
         b.coins = 5;
         b.data = "";
         history.push_back(updateState(b, present));
+        b.coins = 0;
         if(validTransaction(b, present)){
             if (chosenData == "file"){
-                FILE* fp;
-                fp = fopen("client.py","r");
+                //FILE* fp;
+                //fp = fopen("client.py","rb");
+                std::string filename;
+                std::cout<<"Filename?\n";
+                std::cin>>filename;
+                int len = filename.length();
+                char pyth[len+1];
+                strcpy(pyth, filename.c_str());
+                setenv("PYTHONPATH",".",1);
+
+                PyObject *pName, *pModule, *pDict, *pFunc, *pValue, *presult;
+
                 Py_Initialize();
-                PyRun_AnyFile(fp, "client.py");
+                pName = PyString_FromString((char*)"client");
+                pModule = PyImport_Import(pName);
+                pDict = PyModule_GetDict(pModule);
+                pFunc = PyDict_GetItemString(pDict, (char*)"client");
+                if (PyCallable_Check(pFunc)){
+                   pValue=Py_BuildValue("(z)",(char*)pyth);
+                   PyErr_Print();
+                   printf("Sending filename...\n");
+                   presult=PyObject_CallObject(pFunc,pValue);
+                   PyErr_Print();
+                } 
+                else{
+                    PyErr_Print();
+                }
+                Py_DECREF(pValue);
+
+                // Clean up
+                Py_DECREF(pModule);
+                Py_DECREF(pName);
+                //PyRun_SimpleFile(fp, "client.py");
+                //PyRun_SimpleString(pyth);
                 Py_Finalize();
             }
         }
     }
 
     void share(std::string filepath){
+        for(auto file : filesSharing){
+            if(file == filepath){
+                return;
+            }
+        }
         filesSharing.push_back(filepath);
         saveConfig();
         total_coins += 5;
@@ -122,9 +169,7 @@ public:
     }
 
 //Internal functions, users don't touch these
-    void updateChain(){
 
-    }
 
     std::vector<State>  updateState(Transaction tra, std::vector<State>& current){
         std::vector<State> dup(current);
@@ -183,16 +228,23 @@ public:
 //checks if a transaction is valid
     bool validTransaction(Transaction tra, std::vector<State> state){
         State current_person;
+        bool found = false;
         for(auto person : state){
             if(person.user == tra.sender){
                 current_person.user = person.user;
                 current_person.coins = person.coins;
             }
+            if(person.user == tra.receiver){
+                found = true;
+            }
+        }
+        if(!found){
+            return false;
         }
         if (tra.sender == tra.receiver){
             return false;
         }
-        if (tra.coins > current_person.coins && tra.coins != 0){
+        if (tra.coins > current_person.coins){
             return false;
         }
         else{
@@ -309,18 +361,24 @@ public:
             config<<file<<"\n";
         }
         config<<"}\n";
-        config<<"END";
+        //config<<"END";
         config.close();
     }
+
     void loadConfig(){
         std::fstream config;
         config.open("peercoin.config", std::fstream::in);
+        if(!config.is_open()){
+            std::cout<<"No config file. Please Join!\n";
+            return;
+        }
         std::string x;
-        config>>x;
-        config>>x;
-        personalAddress = x;
-        config>>x;
-        config>>x;
+        config>>x;//personaladdress
+        config>>x;//actual addr
+        personalAddress = x; //saves it
+        config>>x; //filesharelist
+        config>>x; //{
+        config>>x; //first data
         while(x != "}"){
             filesSharing.push_back(x);
             config>>x;
