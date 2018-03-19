@@ -1,4 +1,4 @@
-5
+4
 Block: 0
 Hash: 02063ccd1ac42411599279c93be66f90afcc92d809b2f60db8c042418fdf9a9c
 parentHash: 
@@ -162,103 +162,6 @@ TransactionCnt: 10
 		Deus 20
 		Austin 10
 		Ryuko 10
-		Chuck 10
-		DankMeme 5
-	}
-)
-Block: 4
-Hash: 1957966b9b284790307251b80befe6261224c317dbe98208af7e3e8867245a91
-parentHash: 1c774b564222c520527157b5413714df98c3ae36b1d59c8147e9b918e0807589
-TransactionCnt: 15
-(
-	0State: {
-		Deus 10
-	}
-	1State: {
-		Deus 10
-		Austin 10
-	}
-	2State: {
-		Deus 10
-		Austin 10
-		Ryuko 10
-	}
-	3State: {
-		Deus 10
-		Austin 10
-		Ryuko 10
-		Chuck 10
-	}
-	4State: {
-		Deus 15
-		Austin 5
-		Ryuko 10
-		Chuck 10
-	}
-	5State: {
-		Deus 15
-		Austin 5
-		Ryuko 10
-		Chuck 10
-	}
-	6State: {
-		Deus 15
-		Austin 10
-		Ryuko 5
-		Chuck 15
-	}
-	7State: {
-		Deus 20
-		Austin 10
-		Ryuko 5
-		Chuck 10
-	}
-	8State: {
-		Deus 20
-		Austin 10
-		Ryuko 5
-		Chuck 10
-		DankMeme 10
-	}
-	9State: {
-		Deus 20
-		Austin 10
-		Ryuko 10
-		Chuck 10
-		DankMeme 5
-	}
-	10State: {
-		Deus 20
-		Austin 10
-		Ryuko 10
-		Chuck 10
-		DankMeme 5
-	}
-	11State: {
-		Deus 20
-		Austin 5
-		Ryuko 15
-		Chuck 10
-		DankMeme 5
-	}
-	12State: {
-		Deus 20
-		Austin 5
-		Ryuko 15
-		Chuck 10
-		DankMeme 5
-	}
-	13State: {
-		Deus 20
-		Austin 5
-		Ryuko 20
-		Chuck 10
-		DankMeme 5
-	}
-	14State: {
-		Deus 20
-		Austin 0
-		Ryuko 25
 		Chuck 10
 		DankMeme 5
 	}
